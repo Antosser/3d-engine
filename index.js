@@ -38,9 +38,9 @@ var player = {
 		z: 0,
 	},
 	fov: 100,
-}
+};
 
-class rect3d {
+/*class Rect3d {
 	x1 = 0;
 	y1 = 0;
 	z1 = 0;
@@ -48,7 +48,7 @@ class rect3d {
 	x2 = 0;
 	y2 = 0;
 	z2 = 0;
-}
+};*/
 
 var line = (x1, y1, x2, y2) => {
 	ctx.beginPath();
@@ -103,7 +103,7 @@ var drawPoint3d = (x, y, z, s) => {
 	[cx, cy] = getPoint2d(x, y, z);
 
 	if (s == true) {
-		s = 50 / Math.sqrt((x-player.pos.x)**2 + (y-player.pos.y)**2 + (z-player.pos.z)**2)
+		s = 50 / Math.sqrt((x-player.pos.x)**2 + (y-player.pos.y)**2 + (z-player.pos.z)**2);
 	}
 
 	ctx.fillRect(cx - s / 2, cy - s / 2, s, s);
