@@ -99,13 +99,9 @@ var getPoint2d = (x, y, z) => {
 	return [cx + size2, cy + size2];
 }
 
-var drawPoint3d = (x, y, z, s) => {
+var drawPoint3d = (x, y, z) => {
 	[cx, cy] = getPoint2d(x, y, z);
-
-	if (s == true) {
-		s = 50 / Math.sqrt((x-player.pos.x)**2 + (y-player.pos.y)**2 + (z-player.pos.z)**2);
-	}
-
+	s = 50 / Math.sqrt((x-player.pos.x)**2 + (y-player.pos.y)**2 + (z-player.pos.z)**2);
 	ctx.fillRect(cx - s / 2, cy - s / 2, s, s);
 }
 
@@ -116,17 +112,47 @@ var drawLine3d = (x1, y1, z1, x2, y2, z2) => {
 	line(cx1, cy1, cx2, cy2);
 }
 
-var interval = setInterval(() => {
+var drawCuboid = (x1, y1, z1, x2, y2, z2, d, l) => {
+	if (d) {
+		drawPoint3d(x1,y1,z2);
+		drawPoint3d(x1,y1,z1);
+		drawPoint3d(x1,y2,z2);
+		drawPoint3d(x1,y2,z1);
+		drawPoint3d(x2,y1,z2);
+		drawPoint3d(x2,y1,z1);
+		drawPoint3d(x2,y2,z2);
+		drawPoint3d(x2,y2,z1);
+	}
+
+	if (l) {
+		drawLine3d(x1, y1, z1, x2, y1, z1);
+		drawLine3d(x1, y1, z1, x1, y2, z1);
+		drawLine3d(x1, y1, z1, x1, y1, z2);
+		drawLine3d(x2, y1, z2, x1, y1, z2);
+		drawLine3d(x2, y1, z2, x2, y2, z2);
+		drawLine3d(x2, y1, z2, x2, y1, z1);
+		drawLine3d(x1, y1, z2, x1, y2, z2);
+		drawLine3d(x2, y1, z1, x2, y2, z1);
+		drawLine3d(x1, y2, z1, x1, y2, z2);
+		drawLine3d(x1, y2, z1, x2, y2, z1);
+		drawLine3d(x2, y2, z2, x1, y2, z2);
+		drawLine3d(x2, y2, z2, x2, y2, z1);
+	}
+}
+
+var fps = 30;
+
+var loop = () => {
 	ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-	drawPoint3d(-1, -1, -1, true);
-	drawPoint3d(1, -1, -1, true);
-	drawPoint3d(-1, 1, -1, true);
-	drawPoint3d(1, 1, -1, true);
-	drawPoint3d(-1, -1, 1, true);
-	drawPoint3d(1, -1, 1, true);
-	drawPoint3d(-1, 1, 1, true);
-	drawPoint3d(1, 1, 1, true);
+	drawPoint3d(-1, -1, -1);
+	drawPoint3d(1, -1, -1);
+	drawPoint3d(-1, 1, -1);
+	drawPoint3d(1, 1, -1);
+	drawPoint3d(-1, -1, 1);
+	drawPoint3d(1, -1, 1);
+	drawPoint3d(-1, 1, 1);
+	drawPoint3d(1, 1, 1);
 
 	drawLine3d(	-1,	-1,	-1,	1,	-1,	-1,	);
 	drawLine3d(	-1,	-1,	-1,	-1,	1,	-1,	);
@@ -168,4 +194,6 @@ var interval = setInterval(() => {
 		player.ang.y += 1;
 	}
 
-}, 35);
+}
+
+setInterval(loop, 1000 / fps)
