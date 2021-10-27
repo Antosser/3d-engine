@@ -34,10 +34,10 @@ Parameters: x1, y1, z1, x2, y2, z2
 Example: `drawLine3d(-100, 0, 0, 100, 0, 0)`
 
 ## Variables
--fps: 30
--player:
---fov: 100
---pos:
----x: 0, y: 0, z: -5
---ang:
----x: 0, y: 0, z: 0
+-fps: 30  
+-player:  
+--fov: 100  
+--pos:  
+---x: 0, y: 0, z: -5  
+--ang:  
+---x: 0, y: 0, z: 0  
