@@ -112,7 +112,7 @@ var drawLine3d = (x1, y1, z1, x2, y2, z2) => {
 	line(cx1, cy1, cx2, cy2);
 }
 
-var drawCuboid = (x1, y1, z1, x2, y2, z2, d, l) => {
+var drawCube = (x1, y1, z1, x2, y2, z2, d, l) => {
 	if (d) {
 		drawPoint3d(x1,y1,z2);
 		drawPoint3d(x1,y1,z1);
